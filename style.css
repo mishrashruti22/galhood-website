@@ -415,7 +415,7 @@
 
   @keyframes gallery-scroll{
     0%{ transform:translate3d(0,0,0); }
-    100%{ transform:translate3d(-3042px,0,0); }
+    100%{ transform:translate3d(-3276px,0,0); }
   }
   @media (prefers-reduced-motion: reduce){
     .gallery-track{ animation:none; }
