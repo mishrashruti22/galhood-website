@@ -1,23 +1,57 @@
 <script>
-document.querySelectorAll('.yapping-card').forEach(function(card){
-  var video = card.querySelector('.yapping-video');
-  var overlay = card.querySelector('.yapping-overlay');
-  var previewSeconds = parseFloat(video.dataset.previewSeconds) || 4;
+// Apni saari video files yahan list karein, thumbnails ke same order me
+var yappingVideos = [
+  'videos/testimonial1.mp4',
+  'videos/testimonial2.mp4',
+  'videos/testimonial3.mp4',
+  'videos/testimonial4.mp4',
+  'videos/testimonial5.mp4'
+];
 
-  video.play().catch(function(){});
+var currentIndex = 0;
+var modal = document.getElementById('yappingModal');
+var modalVideo = document.getElementById('yappingModalVideo');
 
-  video.addEventListener('timeupdate', function(){
-    if(video.currentTime >= previewSeconds){
-      video.pause();
-      overlay.classList.add('show');
-    }
+// thumbnails ko muted autoplay chalayein (preview ke liye)
+document.querySelectorAll('.yapping-thumb video').forEach(function(v){
+  v.play().catch(function(){});
+});
+
+function openModal(index){
+  currentIndex = index;
+  modalVideo.src = yappingVideos[currentIndex];
+  modalVideo.play().catch(function(){});
+  modal.classList.add('open');
+}
+
+function closeModal(){
+  modal.classList.remove('open');
+  modalVideo.pause();
+}
+
+document.querySelectorAll('.yapping-thumb').forEach(function(thumb){
+  thumb.addEventListener('click', function(){
+    var index = parseInt(thumb.dataset.index);
+    openModal(index);
   });
+});
 
-  card.addEventListener('mouseleave', function(){
-    if(!overlay.classList.contains('show')){
-      video.currentTime = 0;
-      video.play().catch(function(){});
-    }
-  });
+document.getElementById('yappingClose').addEventListener('click', closeModal);
+
+document.getElementById('yappingModalNext').addEventListener('click', function(){
+  currentIndex = (currentIndex + 1) % yappingVideos.length;
+  modalVideo.src = yappingVideos[currentIndex];
+  modalVideo.play().catch(function(){});
+});
+
+document.getElementById('yappingModalPrev').addEventListener('click', function(){
+  currentIndex = (currentIndex - 1 + yappingVideos.length) % yappingVideos.length;
+  modalVideo.src = yappingVideos[currentIndex];
+  modalVideo.play().catch(function(){});
+});
+
+// background pe click karke bhi close ho jaye
+modal.addEventListener('click', function(e){
+  if(e.target === modal){ closeModal(); }
 });
 </script>
