@@ -271,7 +271,8 @@
     font-weight:600;
     margin-bottom:10px;
   }
-  .team-info p{ font-size:13.5px; color:var(--muted); 
+  .team-info p{ font-size:13.5px; color:var(--muted); }
+
   .yapping-section{
   background:var(--pink-soft);
 }
