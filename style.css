@@ -272,132 +272,61 @@
     margin-bottom:10px;
   }
   .team-info p{ font-size:13.5px; color:var(--muted); 
-  }
-.yapping-section{
+  .yapping-section{
   background:var(--pink-soft);
 }
 .yapping-grid{
   display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:16px;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
 }
-.yapping-thumb{
+.yapping-card{
   position:relative;
   aspect-ratio:9/16;
-  border-radius:14px;
+  border-radius:16px;
   overflow:hidden;
-  background:#000;
-  cursor:pointer;
+  display:block;
 }
-.yapping-thumb video{
+.yapping-card img{
   width:100%;
   height:100%;
   object-fit:cover;
   display:block;
 }
-.yapping-play{
+.yapping-overlay{
   position:absolute;
   inset:0;
+  background:rgba(30,10,15,0.45);
+  color:#fff;
   display:flex;
+  flex-direction:column;
   align-items:center;
   justify-content:center;
-  color:#fff;
-  font-size:22px;
-  background:rgba(0,0,0,0.25);
-  transition:background .2s ease;
-}
-.yapping-thumb:hover .yapping-play{
-  background:rgba(0,0,0,0.45);
-}
-
-/* Modal */
-.yapping-modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(20,5,8,0.92);
-  z-index:999;
-  align-items:center;
-  justify-content:center;
-  gap:20px;
-}
-.yapping-modal.open{
-  display:flex;
-}
-.yapping-modal-card{
-  position:relative;
-  width:320px;
-  aspect-ratio:9/16;
-  border-radius:18px;
-  overflow:hidden;
-  background:#000;
-}
-.yapping-modal-card video{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-}
-.yapping-handle{
-  position:absolute;
-  bottom:60px;
-  left:16px;
-  color:#fff;
+  gap:10px;
+  opacity:0;
+  transition:opacity .2s ease;
   font-size:13px;
   font-weight:600;
-  background:rgba(0,0,0,0.45);
-  padding:6px 12px;
-  border-radius:20px;
 }
-.yapping-insta-link{
-  position:absolute;
-  bottom:16px;
-  left:16px;
-  right:16px;
-  text-align:center;
+.yapping-card:hover .yapping-overlay{
+  opacity:1;
 }
-.yapping-btn{
-  background:var(--cherry);
-  color:#fff;
-  padding:10px 18px;
-  border-radius:30px;
-  font-size:13px;
-  font-weight:600;
-  display:inline-block;
-}
-.yapping-close{
-  position:absolute;
-  top:24px;
-  right:28px;
+.yapping-icon{
   width:40px;
   height:40px;
   border-radius:50%;
-  background:rgba(255,255,255,0.15);
-  color:#fff;
-  border:none;
-  font-size:18px;
-  cursor:pointer;
+  background:var(--cherry);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:16px;
 }
-.yapping-modal-arrow{
-  width:48px;
-  height:48px;
-  border-radius:50%;
-  background:rgba(255,255,255,0.15);
-  color:#fff;
-  border:none;
-  font-size:26px;
-  cursor:pointer;
-  flex-shrink:0;
-}
-.yapping-modal-arrow:hover{ background:rgba(255,255,255,0.3); }
 
 @media (max-width:900px){
-  .yapping-grid{ grid-template-columns:repeat(3,1fr); }
+  .yapping-grid{ grid-template-columns:1fr 1fr; }
 }
 @media (max-width:600px){
-  .yapping-grid{ grid-template-columns:repeat(2,1fr); }
-  .yapping-modal-card{ width:80vw; }
-  .yapping-modal-arrow{ width:38px; height:38px; font-size:20px; }
+  .yapping-overlay{ opacity:1; background:rgba(30,10,15,0.25); }
 }
 
 
